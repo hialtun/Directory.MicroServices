@@ -8,8 +8,4 @@
       <ProjectReference Include="..\MicroServices.Core\MicroServices.Core.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Entities" />
-    </ItemGroup>
-
 </Project>
