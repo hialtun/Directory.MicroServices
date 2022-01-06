@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="DataAccess" />
+      <Folder Include="Handlers\Command" />
+      <Folder Include="Handlers\Query" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Autofac" Version="6.3.0" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,48 @@
+version: "3.8"
+services:
+    contact-api:
+        build:
+            context: .
+            dockerfile: ./Directory.Contact.API/Dockerfile
+        restart: always
+        ports:
+            - "8081:80"
+        environment: 
+            - DatabaseSettings:ConnectionString=mongodb://directory-db:27017
+        volumes:
+            - ./Volumes/api:/var/db
+        depends_on:
+            - directory-db
+    report-api:
+        build:
+            context: .
+            dockerfile: ./Directory.Report.API/Dockerfile
+        restart: always
+        ports:
+            - "8082:80"
+        environment: 
+            - DirectoryDatabaseSettings:ConnectionString=mongodb://directory-db:27017
+        volumes:
+            - ./Volumes/api:/var/db
+        depends_on:
+            - directory-db
+    directory-db:
+        image: mongo:latest
+        restart: always
+        volumes:
+            - ./Volumes/Mongo:/data/db        
+        ports:
+            - 27017:27017
+        command: mongod --logpath=/dev/null 
+    rabbitmq:
+        image: rabbitmq:3.7-management
+        container_name: rabbitmq
+        hostname: rabbitmq
+        ports:
+            - 15672:15672
+            - 5672:5672
+        volumes:
+            - ".:/rabbitmq:rw"
+        environment:
+            - RABBITMQ_DEFAULT_USER=user
+            - RABBITMQ_DEFAULT_PASS=pass123
