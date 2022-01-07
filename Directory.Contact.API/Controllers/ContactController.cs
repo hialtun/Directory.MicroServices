@@ -20,29 +20,43 @@ namespace Directory.Contact.API.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost("create")]
+        [HttpPost("Create")]
         public async Task<IActionResult> Create(CreateContactCommand command)
         {
             var result = await _mediator.Send(command);
             return result != null ? Ok(result) : NotFound();
         }
 
-        [HttpPost("get")]
+        [HttpPost("Get")]
         public async Task<IActionResult> Get(GetContactQuery query)
         {
             var result = await _mediator.Send(query);
             return result != null ? Ok(result) : NotFound();
         }
 
-        [HttpPost("list")]
+        [HttpPost("List")]
         public async Task<IActionResult> List(ListContactQuery query)
         {
             var result = await _mediator.Send(query);
             return result != null ? Ok(result) : NotFound();
         }
         
-        [HttpPost("delete")]
+        [HttpPost("Delete")]
         public async Task<IActionResult> Delete(DeleteContactCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return result != null ? Ok(result) : NotFound();
+        }
+        
+        [HttpPost("AddContactInfo")]
+        public async Task<IActionResult> AddContactInfo(AddContactInfoCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return result != null ? Ok(result) : NotFound();
+        }
+        
+        [HttpPost("RemoveContactInfo")]
+        public async Task<IActionResult> RemoveContactInfo(RemoveContactInfoCommand command)
         {
             var result = await _mediator.Send(command);
             return result != null ? Ok(result) : NotFound();
