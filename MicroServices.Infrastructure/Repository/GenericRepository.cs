@@ -9,12 +9,12 @@ using MongoDB.Driver;
 
 namespace MicroServices.Infrastructure.Repository
 {
-    public abstract class GenericRepository<TDocument> : IRepository<TDocument> where TDocument : DocumentEntity, new()
+    public class GenericRepository<TDocument> : IRepository<TDocument> where TDocument : DocumentEntity, new()
     {
         protected readonly IMongoCollection<TDocument> Collection;
         private readonly IOptions<DatabaseSettings> _settings;
 
-        protected GenericRepository(IOptions<DatabaseSettings> settings)
+        public GenericRepository(IOptions<DatabaseSettings> settings)
         {
             _settings = settings;
             var client = new MongoClient(_settings.Value.ConnectionString);

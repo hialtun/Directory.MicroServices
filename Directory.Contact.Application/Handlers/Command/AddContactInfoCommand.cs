@@ -6,6 +6,7 @@ using Directory.Contact.Application.DataAccess;
 using Directory.Contact.Domain.Entities;
 using MediatR;
 using MicroServices.Core.Handler;
+using MicroServices.Infrastructure.Repository;
 
 namespace Directory.Contact.Application.Handlers.Command
 {
@@ -22,11 +23,11 @@ namespace Directory.Contact.Application.Handlers.Command
 
     public class AddContactInfoHandler : IRequestHandler<AddContactInfoCommand, AddContactInfoResponse>
     {
-        public AddContactInfoHandler(ContactRepository contactRepository)
+        public AddContactInfoHandler(IRepository<Domain.Entities.Contact> contactRepository)
         {
             _contactRepository = contactRepository;
         }
-        private readonly ContactRepository _contactRepository;
+        private readonly IRepository<Domain.Entities.Contact> _contactRepository;
 
         public async Task<AddContactInfoResponse> Handle(AddContactInfoCommand request, CancellationToken cancellationToken)
         {
@@ -34,8 +35,14 @@ namespace Directory.Contact.Application.Handlers.Command
             try
             {
                 var contact = await  _contactRepository.GetByIdAsync(request.ContactId);
-                contact.ContactInfoList.Add(request.ContactInfo);
-                await _contactRepository.UpdateAsync(contact.Id, contact);
+                contact.ContactInfoList.Add(
+                    new ContactInfo()
+                    {
+                        InfoType = request.ContactInfo.InfoType,
+                        Value = request.ContactInfo.Value
+                    }
+                    );
+                await _contactRepository.UpdateAsync(request.ContactId, contact);
                 response.Model = contact.ContactInfoList;
             }
             catch (Exception e)

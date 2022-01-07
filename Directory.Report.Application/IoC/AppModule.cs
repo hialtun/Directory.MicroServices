@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Directory.Report.Application.DataAccess;
+using MicroServices.Infrastructure.Repository;
 
 namespace Directory.Report.Application.IoC
 {
@@ -8,7 +9,8 @@ namespace Directory.Report.Application.IoC
         protected override void Load(ContainerBuilder builder)
         {
             // repository
-            builder.RegisterType<ReportRepository>().SingleInstance();
+            builder.RegisterType<GenericRepository<Domain.Entities.Report>>()
+                .As<IRepository<Domain.Entities.Report>>().SingleInstance();
         }
     }
 }

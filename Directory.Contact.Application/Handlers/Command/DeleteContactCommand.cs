@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Directory.Contact.Application.DataAccess;
 using MediatR;
 using MicroServices.Core.Handler;
+using MicroServices.Infrastructure.Repository;
 
 namespace Directory.Contact.Application.Handlers.Command
 {
@@ -19,11 +20,11 @@ namespace Directory.Contact.Application.Handlers.Command
 
     public class DeleteContactHandler : IRequestHandler<DeleteContactCommand, DeleteContactResponse>
     {
-        public DeleteContactHandler(ContactRepository contactRepository)
+        public DeleteContactHandler(IRepository<Domain.Entities.Contact> contactRepository)
         {
             _contactRepository = contactRepository;
         }
-        private readonly ContactRepository _contactRepository;
+        private readonly IRepository<Domain.Entities.Contact> _contactRepository;
 
         public async Task<DeleteContactResponse> Handle(DeleteContactCommand request, CancellationToken cancellationToken)
         {

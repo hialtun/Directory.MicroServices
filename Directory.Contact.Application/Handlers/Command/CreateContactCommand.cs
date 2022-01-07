@@ -6,6 +6,7 @@ using Directory.Contact.Application.DataAccess;
 using Directory.Contact.Domain.Entities;
 using MediatR;
 using MicroServices.Core.Handler;
+using MicroServices.Infrastructure.Repository;
 
 namespace Directory.Contact.Application.Handlers.Command
 {
@@ -24,11 +25,11 @@ namespace Directory.Contact.Application.Handlers.Command
 
     public class CreateContactHandler : IRequestHandler<CreateContactCommand, CreateContactResponse>
     {
-        public CreateContactHandler(ContactRepository contactRepository)
+        public CreateContactHandler(IRepository<Domain.Entities.Contact> contactRepository)
         {
             _contactRepository = contactRepository;
         }
-        private readonly ContactRepository _contactRepository;
+        private readonly IRepository<Domain.Entities.Contact> _contactRepository;
 
         public async Task<CreateContactResponse> Handle(CreateContactCommand request, CancellationToken cancellationToken)
         {

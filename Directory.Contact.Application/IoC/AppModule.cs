@@ -3,6 +3,7 @@ using Autofac;
 using Directory.Contact.Application.DataAccess;
 using MediatR;
 using MediatR.Extensions.Autofac.DependencyInjection;
+using MicroServices.Infrastructure.Repository;
 using Module = Autofac.Module;
 
 namespace Directory.Contact.Application.IoC
@@ -23,7 +24,9 @@ namespace Directory.Contact.Application.IoC
                 .AsClosedTypesOf(typeof(IRequest<>));
             
             // repository
-            builder.RegisterType<ContactRepository>().SingleInstance();
+            // builder.RegisterType<ContactRepository>().SingleInstance();
+            builder.RegisterType<GenericRepository<Domain.Entities.Contact>>()
+                .As<IRepository<Domain.Entities.Contact>>().SingleInstance();
         }
     }
 }

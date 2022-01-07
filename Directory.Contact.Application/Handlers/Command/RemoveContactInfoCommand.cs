@@ -6,6 +6,7 @@ using Directory.Contact.Application.DataAccess;
 using Directory.Contact.Domain.Entities;
 using MediatR;
 using MicroServices.Core.Handler;
+using MicroServices.Infrastructure.Repository;
 
 namespace Directory.Contact.Application.Handlers.Command
 {
@@ -22,11 +23,11 @@ namespace Directory.Contact.Application.Handlers.Command
 
     public class RemoveContactInfoHandler : IRequestHandler<RemoveContactInfoCommand, RemoveContactInfoResponse>
     {
-        public RemoveContactInfoHandler(ContactRepository contactRepository)
+        public RemoveContactInfoHandler(IRepository<Domain.Entities.Contact> contactRepository)
         {
             _contactRepository = contactRepository;
         }
-        private readonly ContactRepository _contactRepository;
+        private readonly IRepository<Domain.Entities.Contact> _contactRepository;
 
         public async Task<RemoveContactInfoResponse> Handle(RemoveContactInfoCommand request, CancellationToken cancellationToken)
         {
