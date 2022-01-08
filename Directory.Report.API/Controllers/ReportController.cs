@@ -13,11 +13,9 @@ namespace Directory.Report.API.Controllers
     public class ReportController : ControllerBase
     {
         private readonly IMediator _mediator;
-        private readonly ILogger<ReportController> _logger;
 
-        public ReportController(ILogger<ReportController> logger, IMediator mediator)
+        public ReportController(IMediator mediator)
         {
-            _logger = logger;
             _mediator = mediator;
         }
 

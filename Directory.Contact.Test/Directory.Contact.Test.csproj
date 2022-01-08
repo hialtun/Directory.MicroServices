@@ -21,12 +21,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Directory.Contact.API\Directory.Contact.API.csproj" />
       <ProjectReference Include="..\Directory.Contact.Application\Directory.Contact.Application.csproj" />
       <ProjectReference Include="..\MicroServices.Test\MicroServices.Test.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Mock" />
     </ItemGroup>
 
 </Project>

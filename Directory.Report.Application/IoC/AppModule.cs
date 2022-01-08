@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using Autofac;
-using Directory.Report.Application.DataAccess;
 using Directory.Report.Application.RestClients;
 using MediatR;
 using MediatR.Extensions.Autofac.DependencyInjection;

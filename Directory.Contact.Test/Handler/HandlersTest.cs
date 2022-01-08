@@ -22,21 +22,24 @@ namespace Directory.Contact.Test.Handler
             {
                 Id = "61d7e470e00320030f6535fb",
                 Name = "Test1",
-                Surname = "Dene1"
+                Surname = "Dene1",
+                Company = "X"
             });
             contacts[0].ContactInfoList.Add(new ContactInfo(){InfoType = EInfoType.Email, Value = "a@c.com"});
             contacts.Add(new Domain.Entities.Contact()
             {
                 Id = "78d7e470e00320030f653590",
                 Name = "Test2",
-                Surname = "Dene2"
+                Surname = "Dene2",
+                Company = "Y"
             });
             contacts[1].ContactInfoList.Add(new ContactInfo(){InfoType = EInfoType.Phone, Value = "123"});
             contacts.Add(new Domain.Entities.Contact()
             {
                 Id = "r8d7e470e00320030f65359y",
                 Name = "Test3",
-                Surname = "Dene3"
+                Surname = "Dene3",
+                Company = "Z"
             });
             contacts[2].ContactInfoList.Add(new ContactInfo(){InfoType = EInfoType.Location, Value = "İst"});
             SetupMock<Domain.Entities.Contact>(mockRepository, contacts);
@@ -58,6 +61,9 @@ namespace Directory.Contact.Test.Handler
             Assert.NotNull(contact.Model);
             Assert.Equal("Test1", contact.Model.Name);
             Assert.Equal("Dene1", contact.Model.Surname);
+            Assert.Equal("X", contact.Model.Company);
+            Assert.Contains(contact.Model.ContactInfoList, 
+                i => i.InfoType == EInfoType.Email && i.Value == "a@c.com");
         }
         
         [Fact]
@@ -88,6 +94,7 @@ namespace Directory.Contact.Test.Handler
             mockContact.Object.ContactInfoList.Add(new ContactInfo(){InfoType = EInfoType.Phone, Value = "42333"});
             var contact = createHandler.Handle(mockContact.Object,new CancellationToken()).GetAwaiter().GetResult();
             Assert.Equal(mockContact.Object.Name, contact.Model.Name);
+            Assert.Equal(mockContact.Object.Surname, contact.Model.Surname);
             Assert.NotEmpty(contact.Model.Id);
             Assert.Equal(4, contacts.Count);
         }
@@ -123,6 +130,7 @@ namespace Directory.Contact.Test.Handler
             
             var contact = addInfoHandler.Handle(mockContact.Object,new CancellationToken()).GetAwaiter().GetResult();
             Assert.Equal(2, contact.Model.Count);
+            Assert.Contains(contact.Model, i => i.InfoType == EInfoType.Location && i.Value == "Paris");
         }
         
         [Fact]
@@ -140,6 +148,7 @@ namespace Directory.Contact.Test.Handler
             
             var contact = removeInfoHandler.Handle(mockContact.Object,new CancellationToken()).GetAwaiter().GetResult();
             Assert.Empty(contact.Model);
+            Assert.DoesNotContain(contact.Model, i => i.InfoType == EInfoType.Phone && i.Value == "123");
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Directory.Contact.Application.DataAccess;
 using MediatR;
 using MicroServices.Core.Handler;
 using MicroServices.Infrastructure.Repository;

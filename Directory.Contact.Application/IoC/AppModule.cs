@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using Autofac;
-using Directory.Contact.Application.DataAccess;
 using MediatR;
 using MediatR.Extensions.Autofac.DependencyInjection;
 using MicroServices.Infrastructure.Repository;

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using Directory.Contact.Application.DataAccess;
 using Directory.Contact.Domain.Entities;
 using MediatR;
 using MicroServices.Core.Handler;
@@ -35,8 +34,10 @@ namespace Directory.Contact.Application.Handlers.Command
             try
             {
                 var contact = await  _contactRepository.GetByIdAsync(request.ContactId);
+                if (contact.ContactInfoList == null) return response;
+                
                 contact.ContactInfoList.RemoveAll(c => c.InfoType == request.ContactInfo.InfoType
-                && c.InfoType == request.ContactInfo.InfoType);
+                                                           && c.InfoType == request.ContactInfo.InfoType);
                 await _contactRepository.UpdateAsync(contact);
                 response.Model = contact.ContactInfoList;
             }
