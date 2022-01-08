@@ -8,6 +8,7 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
+        <PackageReference Include="Moq" Version="4.16.1" />
         <PackageReference Include="xunit" Version="2.4.1" />
         <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -20,13 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Mock" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\Directory.Report.Application\Directory.Report.Application.csproj" />
-      <ProjectReference Include="..\Directory.Report.Domain\Directory.Report.Domain.csproj" />
-      <ProjectReference Include="..\MicroServices.Test\MicroServices.Test.csproj" />
+      <ProjectReference Include="..\MicroServices.Infrastructure\MicroServices.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

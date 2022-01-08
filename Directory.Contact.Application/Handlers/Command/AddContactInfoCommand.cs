@@ -42,7 +42,7 @@ namespace Directory.Contact.Application.Handlers.Command
                         Value = request.ContactInfo.Value
                     }
                     );
-                await _contactRepository.UpdateAsync(request.ContactId, contact);
+                await _contactRepository.UpdateAsync(contact);
                 response.Model = contact.ContactInfoList;
             }
             catch (Exception e)

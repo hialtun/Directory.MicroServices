@@ -33,6 +33,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{203C81BA-A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Directory.Report.Test", "Directory.Report.Test\Directory.Report.Test.csproj", "{609E2503-3384-4BE5-BD4C-A5EA5BC508B3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroServices.Test", "MicroServices.Test\MicroServices.Test.csproj", "{CADFCAA1-4809-47BF-989F-38B39F2973DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +81,10 @@ Global
 		{609E2503-3384-4BE5-BD4C-A5EA5BC508B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{609E2503-3384-4BE5-BD4C-A5EA5BC508B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{609E2503-3384-4BE5-BD4C-A5EA5BC508B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CADFCAA1-4809-47BF-989F-38B39F2973DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CADFCAA1-4809-47BF-989F-38B39F2973DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CADFCAA1-4809-47BF-989F-38B39F2973DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CADFCAA1-4809-47BF-989F-38B39F2973DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{721DAD15-69E7-43DE-915E-6905BB0C1DE1} = {4558DCE7-6363-4610-87A9-98CEC5CDBAEE}

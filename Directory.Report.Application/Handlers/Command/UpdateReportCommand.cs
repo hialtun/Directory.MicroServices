@@ -42,7 +42,7 @@ namespace Directory.Report.Application.Handlers.Command
                     DemandDatetime = request.DemandDatetime,
                     ReportDetail = request.ReportDetail
                 };
-                await _reportRepository.UpdateAsync(request.Id, report);
+                await _reportRepository.UpdateAsync(report);
                 response.Model = report;
             }
             catch (Exception e)

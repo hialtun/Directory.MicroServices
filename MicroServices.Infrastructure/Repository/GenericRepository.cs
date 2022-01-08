@@ -41,9 +41,9 @@ namespace MicroServices.Infrastructure.Repository
             return document;
         }
 
-        public virtual async Task<TDocument> UpdateAsync(string id, TDocument document)
+        public virtual async Task<TDocument> UpdateAsync(TDocument document)
         {
-            return await Collection.FindOneAndReplaceAsync(x => x.Id == id, document);
+            return await Collection.FindOneAndReplaceAsync(x => x.Id == document.Id, document);
         }
 
         public virtual async Task<TDocument> DeleteAsync(string id)

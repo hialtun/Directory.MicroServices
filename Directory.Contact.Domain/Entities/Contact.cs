@@ -7,6 +7,10 @@ namespace Directory.Contact.Domain.Entities
 {
     public class Contact : DocumentEntity
     {
+        public Contact()
+        {
+            ContactInfoList = new List<ContactInfo>();
+        }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Company { get; set; }

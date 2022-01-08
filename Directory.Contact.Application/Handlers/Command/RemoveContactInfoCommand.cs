@@ -37,7 +37,7 @@ namespace Directory.Contact.Application.Handlers.Command
                 var contact = await  _contactRepository.GetByIdAsync(request.ContactId);
                 contact.ContactInfoList.RemoveAll(c => c.InfoType == request.ContactInfo.InfoType
                 && c.InfoType == request.ContactInfo.InfoType);
-                await _contactRepository.UpdateAsync(contact.Id, contact);
+                await _contactRepository.UpdateAsync(contact);
                 response.Model = contact.ContactInfoList;
             }
             catch (Exception e)
