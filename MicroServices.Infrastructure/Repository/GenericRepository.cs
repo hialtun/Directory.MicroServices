@@ -9,12 +9,12 @@ using MongoDB.Driver;
 
 namespace MicroServices.Infrastructure.Repository
 {
-    public abstract class GenericRepository<TDocument> : IRepository<TDocument> where TDocument : DocumentEntity, new()
+    public class GenericRepository<TDocument> : IRepository<TDocument> where TDocument : DocumentEntity, new()
     {
         protected readonly IMongoCollection<TDocument> Collection;
         private readonly IOptions<DatabaseSettings> _settings;
 
-        protected GenericRepository(IOptions<DatabaseSettings> settings)
+        public GenericRepository(IOptions<DatabaseSettings> settings)
         {
             _settings = settings;
             var client = new MongoClient(_settings.Value.ConnectionString);
@@ -41,9 +41,9 @@ namespace MicroServices.Infrastructure.Repository
             return document;
         }
 
-        public virtual async Task<TDocument> UpdateAsync(string id, TDocument document)
+        public virtual async Task<TDocument> UpdateAsync(TDocument document)
         {
-            return await Collection.FindOneAndReplaceAsync(x => x.Id == id, document);
+            return await Collection.FindOneAndReplaceAsync(x => x.Id == document.Id, document);
         }
 
         public virtual async Task<TDocument> DeleteAsync(string id)

@@ -5,13 +5,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="DataAccess" />
-      <Folder Include="Handlers\Command" />
-      <Folder Include="Handlers\Query" />
+      <PackageReference Include="Autofac" Version="6.3.0" />
+      <PackageReference Include="MediatR" Version="10.0.0" />
+      <PackageReference Include="MediatR.Extensions.Autofac.DependencyInjection" Version="7.4.0" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Autofac" Version="6.3.0" />
+      <ProjectReference Include="..\Directory.Contact.Domain\Directory.Contact.Domain.csproj" />
+      <ProjectReference Include="..\MicroServices.Infrastructure\MicroServices.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

@@ -5,18 +5,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Handlers\Command" />
-      <Folder Include="Handlers\Event" />
-      <Folder Include="Handlers\Query" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\Directory.Report.Domain\Directory.Report.Domain.csproj" />
       <ProjectReference Include="..\MicroServices.Infrastructure\MicroServices.Infrastructure.csproj" />
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="Autofac" Version="6.3.0" />
+      <PackageReference Include="MediatR" Version="10.0.0" />
+      <PackageReference Include="MediatR.Extensions.Autofac.DependencyInjection" Version="7.4.0" />
+      <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+      <PackageReference Include="RestSharp" Version="107.0.2-alpha.0.4" />
     </ItemGroup>
 
 </Project>

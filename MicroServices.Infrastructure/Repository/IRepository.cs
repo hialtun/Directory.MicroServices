@@ -10,7 +10,7 @@ namespace MicroServices.Infrastructure.Repository
         IQueryable<TDocument> Get(Expression<Func<TDocument, bool>> predicate = null);
         Task<TDocument> GetByIdAsync(string id);
         Task<TDocument> CreateAsync(TDocument entity);
-        Task<TDocument> UpdateAsync(string id, TDocument entity);
+        Task<TDocument> UpdateAsync(TDocument entity);
         Task<TDocument> DeleteAsync(string id);
     }
 }
