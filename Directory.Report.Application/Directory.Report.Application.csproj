@@ -5,10 +5,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Handlers\Command" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\Directory.Report.Domain\Directory.Report.Domain.csproj" />
       <ProjectReference Include="..\MicroServices.Infrastructure\MicroServices.Infrastructure.csproj" />
     </ItemGroup>
@@ -19,6 +15,7 @@
       <PackageReference Include="MediatR.Extensions.Autofac.DependencyInjection" Version="7.4.0" />
       <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
       <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+      <PackageReference Include="RestSharp" Version="107.0.2-alpha.0.4" />
     </ItemGroup>
 
 </Project>

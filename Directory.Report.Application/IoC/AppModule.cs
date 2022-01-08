@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Autofac;
 using Directory.Report.Application.DataAccess;
+using Directory.Report.Application.RestClients;
 using MediatR;
 using MediatR.Extensions.Autofac.DependencyInjection;
 using MicroServices.Infrastructure.MessageBroker;
@@ -24,7 +25,7 @@ namespace Directory.Report.Application.IoC
 
             // event publisher
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()
-                .AsClosedTypesOf(typeof(IPublisher<>)).InstancePerRequest();
+                .AsClosedTypesOf(typeof(IPublisher<>)).InstancePerLifetimeScope();
             
             // mediatr
             builder.RegisterMediatR(assembly);
@@ -35,6 +36,10 @@ namespace Directory.Report.Application.IoC
 
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()
                 .AsClosedTypesOf(typeof(IRequest<>));
+            
+            // rest client
+            builder.RegisterType<ContactApiClient>()
+                .As<IContactApiClient>().InstancePerLifetimeScope();
         }
     }
 }

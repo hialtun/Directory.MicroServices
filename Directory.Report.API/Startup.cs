@@ -7,7 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
-
+using Newtonsoft.Json.Converters;
+    
 namespace Directory.Report.API
 {
     public class Startup
@@ -22,14 +23,18 @@ namespace Directory.Report.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers()
+                .AddNewtonsoftJson(options =>
+                {
+                    options.SerializerSettings.Converters.Add(new StringEnumConverter());
+                }); 
             services.Configure<RabbitMQSettings>(Configuration.GetSection(nameof(RabbitMQSettings)));
             services.Configure<DatabaseSettings>(Configuration.GetSection(nameof(DatabaseSettings)));
             services.AddHostedService<ReportDemandBackgroundService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "Directory.Report.API", Version = "v1"});
-            });
+            }).AddSwaggerGenNewtonsoftSupport();
         }
 
         public void ConfigureContainer(ContainerBuilder builder)

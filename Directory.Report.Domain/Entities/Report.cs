@@ -1,13 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using MicroServices.Core.Entity;
 
 namespace Directory.Report.Domain.Entities
 {
     public class Report : DocumentEntity
     {
-        public DateTime RequestedDatetime { get; set; }
+        public DateTime DemandDatetime { get; set; }
         public EReportStatus Status { get; set; }
-        public ReportDetail ReportDetail { get; set; }
+        public List<ReportDetail> ReportDetail { get; set; }
     }
 
     public enum EReportStatus

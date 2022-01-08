@@ -30,7 +30,7 @@ namespace Directory.Contact.Application.Handlers.Query
 
         public async Task<ListContactResponse> Handle(ListContactQuery request, CancellationToken cancellationToken)
         {
-            ListContactResponse response = new ListContactResponse() { Success = true };
+            var response = new ListContactResponse() { Success = true };
             try
             {
                 var contactQuery =  _contactRepository.Get();

@@ -27,16 +27,21 @@ namespace Directory.Contact.API.Controllers
             return result != null ? Ok(result) : NotFound();
         }
 
-        [HttpPost("Get")]
-        public async Task<IActionResult> Get(GetContactQuery query)
+        [HttpGet("Get")]
+        public async Task<IActionResult> Get(string id)
         {
+            var query = new GetContactQuery
+            {
+                Id = id
+            };
             var result = await _mediator.Send(query);
             return result != null ? Ok(result) : NotFound();
         }
 
-        [HttpPost("List")]
-        public async Task<IActionResult> List(ListContactQuery query)
+        [HttpGet("List")]
+        public async Task<IActionResult> List()
         {
+            var query = new ListContactQuery();
             var result = await _mediator.Send(query);
             return result != null ? Ok(result) : NotFound();
         }
