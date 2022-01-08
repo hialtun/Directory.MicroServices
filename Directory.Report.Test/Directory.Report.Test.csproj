@@ -20,10 +20,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Mock" />
-    </ItemGroup>
-
-    <ItemGroup>
+      <ProjectReference Include="..\Directory.Report.API\Directory.Report.API.csproj" />
       <ProjectReference Include="..\Directory.Report.Application\Directory.Report.Application.csproj" />
       <ProjectReference Include="..\Directory.Report.Domain\Directory.Report.Domain.csproj" />
       <ProjectReference Include="..\MicroServices.Test\MicroServices.Test.csproj" />

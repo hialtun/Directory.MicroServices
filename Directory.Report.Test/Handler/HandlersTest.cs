@@ -24,6 +24,24 @@ namespace Directory.Report.Test.Handler
                 Status = EReportStatus.InProgress,
                 DemandDatetime = DateTime.Now
             });
+            reports[0].ReportDetail.Add(new ReportDetail()
+            {
+                Location = "İstanbul",
+                ContactCount = 1,
+                ContactPhoneCount = 1
+            });
+            reports.Add(new Domain.Entities.Report()
+            {
+                Id = "61d7e470e00320030f653w2b",
+                Status = EReportStatus.InProgress,
+                DemandDatetime = DateTime.Now
+            });
+            reports[0].ReportDetail.Add(new ReportDetail()
+            {
+                Location = "Ankara",
+                ContactCount = 3,
+                ContactPhoneCount = 2
+            });
             SetupMock(mockRepository, reports);
         }
 
@@ -43,6 +61,10 @@ namespace Directory.Report.Test.Handler
             Assert.NotNull(report.Model);
             Assert.Equal(EReportStatus.InProgress, report.Model.Status);
             Assert.Equal("61d7e470e00320030f6535fb", report.Model.Id);
+            Assert.True(report.Model.DemandDatetime < DateTime.Now);
+            Assert.Contains(report.Model.ReportDetail, r => r.Location == "İstanbul");
+            Assert.Contains(report.Model.ReportDetail, r => r.ContactCount > 0);
+            Assert.Contains(report.Model.ReportDetail, r => r.ContactPhoneCount > 0);
         }
         
         [Fact]
@@ -71,6 +93,7 @@ namespace Directory.Report.Test.Handler
             
             var report = createHandler.Handle(mockReport.Object,new CancellationToken()).GetAwaiter().GetResult();
             Assert.Equal(mockReport.Object.Status, report.Model.Status);
+            Assert.True(report.Model.DemandDatetime < DateTime.Now);
             Assert.NotEmpty(report.Model.Id);
         }
         
@@ -90,6 +113,7 @@ namespace Directory.Report.Test.Handler
             
             var report = updateHandler.Handle(mockReport.Object,new CancellationToken()).GetAwaiter().GetResult();
             Assert.Equal(mockReport.Object.Status, report.Model.Status);
+            Assert.Equal(mockReport.Object.DemandDatetime, report.Model.DemandDatetime);
             Assert.NotEmpty(report.Model.Id);
         }
     }

@@ -6,7 +6,7 @@ namespace MicroServices.Core.Event
     {
         protected EventMessage()
         {
-            Id = new Guid();
+            Id = Guid.NewGuid();
         }
         public Guid Id { get; init; }
     }

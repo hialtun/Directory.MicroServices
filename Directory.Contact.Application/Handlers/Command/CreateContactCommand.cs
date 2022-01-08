@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using Directory.Contact.Application.DataAccess;
 using Directory.Contact.Domain.Entities;
 using MediatR;
 using MicroServices.Core.Handler;

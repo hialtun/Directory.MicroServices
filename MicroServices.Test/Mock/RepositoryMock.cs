@@ -24,7 +24,7 @@ namespace MicroServices.Test.Mock
             mock.Setup(x => x.CreateAsync(It.IsAny<TDocument>()))
                 .ReturnsAsync(new Func<TDocument, TDocument>(x =>
                 {
-                    x.Id = new Guid().ToString();
+                    x.Id = Guid.NewGuid().ToString();
                     collection.Add(x);
                     return collection.Last();
                 }));

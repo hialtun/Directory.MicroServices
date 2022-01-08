@@ -11,12 +11,10 @@ namespace Directory.Contact.API.Controllers
     [ApiController]
     public class ContactController : ControllerBase
     {
-        private readonly ILogger<ContactController> _logger;
         private readonly IMediator _mediator;
 
-        public ContactController(ILogger<ContactController> logger, IMediator mediator)
+        public ContactController(IMediator mediator)
         {
-            _logger = logger;
             _mediator = mediator;
         }
 

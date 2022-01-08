@@ -4,8 +4,13 @@ using MicroServices.Core.Entity;
 
 namespace Directory.Report.Domain.Entities
 {
+
     public class Report : DocumentEntity
     {
+        public Report()
+        {
+            ReportDetail = new List<ReportDetail>();
+        }
         public DateTime DemandDatetime { get; set; }
         public EReportStatus Status { get; set; }
         public List<ReportDetail> ReportDetail { get; set; }

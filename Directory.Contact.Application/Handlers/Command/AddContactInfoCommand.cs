@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using Directory.Contact.Application.DataAccess;
 using Directory.Contact.Domain.Entities;
 using MediatR;
 using MicroServices.Core.Handler;
@@ -35,6 +34,7 @@ namespace Directory.Contact.Application.Handlers.Command
             try
             {
                 var contact = await  _contactRepository.GetByIdAsync(request.ContactId);
+                contact.ContactInfoList ??= new List<ContactInfo>();
                 contact.ContactInfoList.Add(
                     new ContactInfo()
                     {
